@@ -1,0 +1,4 @@
+reports/
+*.docx
+*.docx#
+node_modules/
