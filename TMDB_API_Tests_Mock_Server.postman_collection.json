@@ -1,0 +1,513 @@
+{
+  "info": {
+    "_postman_id": "03d98c54-7fc5-4913-946f-d0d174afc22a",
+    "name": "TMDB API Tests Mock Server",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53152046",
+    "_collection_link": "https://go.postman.co/collection/53152046-03d98c54-7fc5-4913-946f-d0d174afc22a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Mock Scenarios",
+      "item": [
+        {
+          "name": "Get Movie by Search - Returns 500",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns 500 Internal Server Error', function() {\r",
+                  "    pm.response.to.have.status(500);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Dune+Part+Two"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Movie by Search - Returns 500",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "search",
+                    "movie"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "Dune+Part+Two"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "{{api_key}}"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n  \"error\": \"Internal Server Error\",\r\n  \"status_code\": 500\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Malformed JSON - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response should be malformed JSON\", function () {\r",
+                  "try {\r",
+                  "// Attempt to parse the response body as JSON\r",
+                  "pm.response.json();\r",
+                  "pm.expect.fail();\r",
+                  " } catch (e) {\r",
+                  "// If an error occurs, it means the JSON is malformed\r",
+                  "pm.expect(e).to.be.an.instanceof(SyntaxError);\r",
+                  " }\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Dune+Part+Two"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Malformed JSON - Returns 200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "search",
+                    "movie"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "Dune+Part+Two"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "{{api_key}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n\r\n    key: \"value\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Slow Response - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns 200 Slow response', function() {\r",
+                  "    response = pm.response.responseTime;\r",
+                  "    pm.expect(response).to.be.above(5000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Dune+Part+Two"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Slow Response - Returns 200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "search",
+                    "movie"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "Dune+Part+Two"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "{{api_key}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Get Empty Results - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Results array is empty\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    length = json[\"results\"].length;\r",
+                  "    pm.expect(length).to.eql(0);  \r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Dune+Part+Two"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Empty Results - Returns 200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "search",
+                    "movie"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "Dune+Part+Two"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "{{api_key}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{ \r\n    \"results\": [], \r\n    \"total_results\": 0 \r\n    \r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Missing Title - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Missing required field fails contract', function() {\r",
+                  "    const json = pm.response.json();\r",
+                  "    const schema = JSON.parse(pm.collectionVariables.get('movie_detail_schema'));\r",
+                  "    pm.expect(tv4.validate(json, schema)).to.be.false;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movie",
+                "27205"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Missing Title - Returns 200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "movie",
+                    "27205"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "{{api_key}}"
+                    }
+                  ]
+                }
+              },
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"adult\": false,\r\n    \"backdrop_path\": \"/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg\",\r\n    \"belongs_to_collection\": null,\r\n    \"budget\": 160000000,\r\n    \"genres\": [\r\n        {\r\n            \"id\": 28,\r\n            \"name\": \"Action\"\r\n        },\r\n        {\r\n            \"id\": 878,\r\n            \"name\": \"Science Fiction\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"name\": \"Adventure\"\r\n        }\r\n    ],\r\n    \"homepage\": \"https://www.warnerbros.com/movies/inception\",\r\n    \"id\": 27205,\r\n    \"imdb_id\": \"tt1375666\",\r\n    \"origin_country\": [\r\n        \"US\",\r\n        \"GB\"\r\n    ],\r\n    \"original_language\": \"en\",\r\n    \"original_title\": \"Inception\",\r\n    \"overview\": \"Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \\\"inception\\\", the implantation of another person's idea into a target's subconscious.\",\r\n    \"popularity\": 29.8784,\r\n    \"poster_path\": \"/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg\",\r\n    \"production_companies\": [\r\n        {\r\n            \"id\": 923,\r\n            \"logo_path\": \"/5UQsZrfbfG2dYJbx8DxfoTr2Bvu.png\",\r\n            \"name\": \"Legendary Pictures\",\r\n            \"origin_country\": \"US\"\r\n        },\r\n        {\r\n            \"id\": 9996,\r\n            \"logo_path\": \"/3tvBqYsBhxWeHlu62SIJ1el93O7.png\",\r\n            \"name\": \"Syncopy\",\r\n            \"origin_country\": \"GB\"\r\n        },\r\n        {\r\n            \"id\": 174,\r\n            \"logo_path\": \"/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png\",\r\n            \"name\": \"Warner Bros. Pictures\",\r\n            \"origin_country\": \"US\"\r\n        }\r\n    ],\r\n    \"production_countries\": [\r\n        {\r\n            \"iso_3166_1\": \"GB\",\r\n            \"name\": \"United Kingdom\"\r\n        },\r\n        {\r\n            \"iso_3166_1\": \"US\",\r\n            \"name\": \"United States of America\"\r\n        }\r\n    ],\r\n    \"release_date\": \"2010-07-15\",\r\n    \"revenue\": 839030630,\r\n    \"runtime\": 148,\r\n    \"spoken_languages\": [\r\n        {\r\n            \"english_name\": \"English\",\r\n            \"iso_639_1\": \"en\",\r\n            \"name\": \"English\"\r\n        },\r\n        {\r\n            \"english_name\": \"French\",\r\n            \"iso_639_1\": \"fr\",\r\n            \"name\": \"Français\"\r\n        },\r\n        {\r\n            \"english_name\": \"Japanese\",\r\n            \"iso_639_1\": \"ja\",\r\n            \"name\": \"日本語\"\r\n        },\r\n        {\r\n            \"english_name\": \"Swahili\",\r\n            \"iso_639_1\": \"sw\",\r\n            \"name\": \"Kiswahili\"\r\n        }\r\n    ],\r\n    \"status\": \"Released\",\r\n    \"tagline\": \"Your mind is the scene of the crime.\",\r\n    \"video\": false,\r\n    \"vote_average\": 8.37,\r\n    \"vote_count\": 38846\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Field Type Changed - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Field type changed fails contract', function() {\r",
+                  "    const json = pm.response.json();\r",
+                  "    const schema = JSON.parse(pm.collectionVariables.get('movie_detail_schema'));\r",
+                  "    pm.expect(tv4.validate(json, schema)).to.be.false;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movie",
+                "27205"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Field Type Changed - Returns 200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "movie",
+                    "27205"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "{{api_key}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"adult\": false,\r\n    \"backdrop_path\": \"/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg\",\r\n    \"belongs_to_collection\": null,\r\n    \"budget\": 160000000,\r\n    \"genres\": [\r\n        {\r\n            \"id\": 28,\r\n            \"name\": \"Action\"\r\n        },\r\n        {\r\n            \"id\": 878,\r\n            \"name\": \"Science Fiction\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"name\": \"Adventure\"\r\n        }\r\n    ],\r\n    \"homepage\": \"https://www.warnerbros.com/movies/inception\",\r\n    \"id\": \"test\",\r\n    \"imdb_id\": \"tt1375666\",\r\n    \"origin_country\": [\r\n        \"US\",\r\n        \"GB\"\r\n    ],\r\n    \"original_language\": \"en\",\r\n    \"original_title\": \"Inception\",\r\n    \"overview\": \"Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \\\"inception\\\", the implantation of another person's idea into a target's subconscious.\",\r\n    \"popularity\": 29.8784,\r\n    \"poster_path\": \"/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg\",\r\n    \"production_companies\": [\r\n        {\r\n            \"id\": 923,\r\n            \"logo_path\": \"/5UQsZrfbfG2dYJbx8DxfoTr2Bvu.png\",\r\n            \"name\": \"Legendary Pictures\",\r\n            \"origin_country\": \"US\"\r\n        },\r\n        {\r\n            \"id\": 9996,\r\n            \"logo_path\": \"/3tvBqYsBhxWeHlu62SIJ1el93O7.png\",\r\n            \"name\": \"Syncopy\",\r\n            \"origin_country\": \"GB\"\r\n        },\r\n        {\r\n            \"id\": 174,\r\n            \"logo_path\": \"/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png\",\r\n            \"name\": \"Warner Bros. Pictures\",\r\n            \"origin_country\": \"US\"\r\n        }\r\n    ],\r\n    \"production_countries\": [\r\n        {\r\n            \"iso_3166_1\": \"GB\",\r\n            \"name\": \"United Kingdom\"\r\n        },\r\n        {\r\n            \"iso_3166_1\": \"US\",\r\n            \"name\": \"United States of America\"\r\n        }\r\n    ],\r\n    \"release_date\": \"2010-07-15\",\r\n    \"revenue\": 839030630,\r\n    \"runtime\": 148,\r\n    \"spoken_languages\": [\r\n        {\r\n            \"english_name\": \"English\",\r\n            \"iso_639_1\": \"en\",\r\n            \"name\": \"English\"\r\n        },\r\n        {\r\n            \"english_name\": \"French\",\r\n            \"iso_639_1\": \"fr\",\r\n            \"name\": \"Français\"\r\n        },\r\n        {\r\n            \"english_name\": \"Japanese\",\r\n            \"iso_639_1\": \"ja\",\r\n            \"name\": \"日本語\"\r\n        },\r\n        {\r\n            \"english_name\": \"Swahili\",\r\n            \"iso_639_1\": \"sw\",\r\n            \"name\": \"Kiswahili\"\r\n        }\r\n    ],\r\n    \"status\": \"Released\",\r\n    \"tagline\": \"Your mind is the scene of the crime.\",\r\n    \"title\": \"Inception\",\r\n    \"video\": false,\r\n    \"vote_average\": 8.37,\r\n    \"vote_count\": 38846\r\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
