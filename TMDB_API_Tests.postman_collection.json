@@ -337,56 +337,6 @@
           "response": []
         },
         {
-          "name": "Get Movie by Genre - Returns 200",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "const tv4 = require('tv4');\r",
-                  "pm.test('Validate JSON Genre Schema', function()\r",
-                  "\r",
-                  "{\r",
-                  "    const json = pm.response.json();\r",
-                  "    schema = JSON.parse(pm.collectionVariables.get('genre_item_schema'))\r",
-                  "    json[\"genres\"].forEach(function(result) {\r",
-                  "    pm.expect(tv4.validate(result, schema)).to.be.true\r",
-                  "});\r",
-                  "    \r",
-                  "}\r",
-                  "\r",
-                  ");"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/genre/movie/list?api_key={{api_key}}",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "genre",
-                "movie",
-                "list"
-              ],
-              "query": [
-                {
-                  "key": "api_key",
-                  "value": "{{api_key}}"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Get Movie by Empty Search - Returns 200",
           "event": [
             {
@@ -565,20 +515,442 @@
     },
     {
       "name": "TV Shows",
-      "item": []
+      "item": [
+        {
+          "name": "Get TV Show by ID - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Validate JSON Schema TV Show', function()\r",
+                  "\r",
+                  "{\r",
+                  "    const json = pm.response.json();\r",
+                  "    schema = JSON.parse(pm.collectionVariables.get('tv_detail_schema'))\r",
+                  "    pm.expect(tv4.validate(json, schema)).to.be.true\r",
+                  "}\r",
+                  "\r",
+                  ");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tv/1396?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tv",
+                "1396"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get TV Show by Search - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Validate JSON Schema TV Show', function()\r",
+                  "\r",
+                  "{\r",
+                  "    const json = pm.response.json();\r",
+                  "    schema = JSON.parse(pm.collectionVariables.get('tv_search_schema'))\r",
+                  "    json[\"results\"].forEach(function(result) {\r",
+                  "    pm.expect(tv4.validate(result, schema)).to.be.true\r",
+                  "});\r",
+                  "    \r",
+                  "}\r",
+                  "\r",
+                  ");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/tv?query=The+Office&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "tv"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "The+Office"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get TV Show by ID - Returns 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Invalid ID', function() {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"success\"]).to.be.false\r",
+                  "    pm.expect(json[\"status_code\"]).to.eql(34)\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tv/13969999999999?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tv",
+                "13969999999999"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "Genres",
-      "item": []
+      "item": [
+        {
+          "name": "Get Movie by Genre - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Validate JSON Genre Schema', function()\r",
+                  "\r",
+                  "{\r",
+                  "    const json = pm.response.json();\r",
+                  "    schema = JSON.parse(pm.collectionVariables.get('genre_item_schema'))\r",
+                  "    json[\"genres\"].forEach(function(result) {\r",
+                  "    pm.expect(tv4.validate(result, schema)).to.be.true\r",
+                  "});\r",
+                  "    \r",
+                  "}\r",
+                  "\r",
+                  ");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/genre/movie/list?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "genre",
+                "movie",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get TV by Genre - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Validate JSON TV Genre Schema', function()\r",
+                  "\r",
+                  "{\r",
+                  "    const json = pm.response.json();\r",
+                  "    schema = JSON.parse(pm.collectionVariables.get('genre_item_schema'))\r",
+                  "    json[\"genres\"].forEach(function(result) {\r",
+                  "    pm.expect(tv4.validate(result, schema)).to.be.true\r",
+                  "});\r",
+                  "    \r",
+                  "}\r",
+                  "\r",
+                  ");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/genre/tv/list?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "genre",
+                "tv",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Discover Movie by Genre - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Discover Movie Genre Assert', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"results\"].length).to.be.above(0)\r",
+                  "    \r",
+                  "    json[\"results\"].forEach(function(result) {\r",
+                  "    pm.expect(result[\"genre_ids\"].length).to.be.above(0)\r",
+                  "}\r",
+                  ")});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/discover/movie?with_genres=28&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "discover",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "with_genres",
+                  "value": "28"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "Chained Requests",
       "item": [
         {
-          "name": "New Request",
+          "name": "Get Request by Search - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Grab search ID and store', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    const json = pm.response.json();\r",
+                  "    id = json.results[0].id;\r",
+                  "    pm.collectionVariables.set(\"search_id\", id);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/movie?query=The+Dark+Knight&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "The+Dark+Knight"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Request by Stored ID - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Search by stored ID and verify', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    const json = pm.response.json();\r",
+                  "    id = json[\"id\"]\r",
+                  "    pm.expect(id).to.equal(pm.collectionVariables.get(\"search_id\"));\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/movie/{{search_id}}?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movie",
+                "{{search_id}}"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Credits by Stored ID - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const tv4 = require('tv4');\r",
+                  "pm.test('Search by stored ID and verify', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"id\"]).to.equal(pm.collectionVariables.get(\"search_id\"));\r",
+                  "    pm.expect(json[\"cast\"].length).to.be.above(0);\r",
+                  "    pm.expect(json[\"crew\"].length).to.be.above(0);\r",
+                  "     schema = JSON.parse(pm.collectionVariables.get('credit_schema'))\r",
+                  "\r",
+                  "    json[\"cast\"].forEach(function(result) {\r",
+                  "    pm.expect(tv4.validate(result, schema)).to.be.true\r",
+                  "\r",
+                  "})});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/movie/{{search_id}}/credits?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movie",
+                "{{search_id}}",
+                "credits"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
           },
           "response": []
         }
@@ -586,7 +958,273 @@
     },
     {
       "name": "Error Cases",
-      "item": []
+      "item": [
+        {
+          "name": "Post instead of Get Request - Returns 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Invalid Request', function() {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"success\"]).to.be.false\r",
+                  "    pm.expect(json[\"status_code\"]).to.eql(34)\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/genre/movie/list?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "genre",
+                "movie",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Negative Page Number - Returns 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Invalid Page Number', function() {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"success\"]).to.be.false\r",
+                  "    pm.expect(json[\"status_code\"]).to.eql(22)\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tv/popular?page=-1&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tv",
+                "popular"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "-1"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Zero Page Number - Returns 400",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Zero Page Number', function() {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"success\"]).to.be.false\r",
+                  "    pm.expect(json[\"status_code\"]).to.eql(22)\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tv/popular?page=0&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tv",
+                "popular"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Non-existent Endpoint - Returns 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Non existent Endpoint', function() {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json[\"success\"]).to.be.false\r",
+                  "    pm.expect(json[\"status_code\"]).to.eql(34)\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tvshows/popular?page=1&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tvshows",
+                "popular"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Search with Special Character - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Special Character', function() {\r",
+                  "    pm.expect(pm.response.code).to.not.be.within(500, 599);\r",
+                  "    const json = pm.response.json();\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search/movie?query=<script>alert(1)</script>&api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "search",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "<script>alert(1)</script>"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Request Below 2000 ms - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Below 2000 ms', function() {\r",
+                  "    responseTime = pm.response.responseTime;\r",
+                  "    pm.expect(responseTime).to.be.below(2000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "movie",
+                "27205"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "Mock Scenarios",
@@ -766,6 +1404,22 @@
         },
         {
           "name": "Get Slow Response - Returns 200",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns 200 Slow response', function() {\r",
+                  "    response = pm.response.responseTime;\r",
+                  "    pm.expect(response).to.be.above(5000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [],
@@ -1118,8 +1772,23 @@
     },
     {
       "key": "genre_item_schema",
-      "value": "",
-      "type": "default"
+      "value": ""
+    },
+    {
+      "key": "tv_detail_schema",
+      "value": ""
+    },
+    {
+      "key": "tv_search_schema",
+      "value": ""
+    },
+    {
+      "key": "search_id",
+      "value": ""
+    },
+    {
+      "key": "credit_schema",
+      "value": ""
     }
   ]
 }
