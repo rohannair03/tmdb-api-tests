@@ -359,7 +359,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Missing required field fails contract', function() {\r",
                   "    const json = pm.response.json();\r",
                   "    const schema = JSON.parse(pm.collectionVariables.get('movie_detail_schema'));\r",
@@ -436,7 +436,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Field type changed fails contract', function() {\r",
                   "    const json = pm.response.json();\r",
                   "    const schema = JSON.parse(pm.collectionVariables.get('movie_detail_schema'));\r",

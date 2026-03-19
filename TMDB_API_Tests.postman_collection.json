@@ -77,7 +77,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Assert on 401', function()\r",
                   "\r",
                   "{\r",
@@ -163,7 +163,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Assert on 401', function()\r",
                   "\r",
                   "{\r",
@@ -237,7 +237,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Validate JSON Schema', function()\r",
                   "\r",
                   "{\r",
@@ -256,8 +256,12 @@
             {
               "listen": "prerequest",
               "script": {
-                "exec": [],
-                "type": "text/javascript"
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -290,7 +294,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Validate JSON Schema', function()\r",
                   "\r",
                   "{\r",
@@ -523,7 +527,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Validate JSON Schema TV Show', function()\r",
                   "\r",
                   "{\r",
@@ -569,7 +573,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Validate JSON Schema TV Show', function()\r",
                   "\r",
                   "{\r",
@@ -669,7 +673,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Validate JSON Genre Schema', function()\r",
                   "\r",
                   "{\r",
@@ -719,7 +723,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const tv4 = require('tv4');\r",
+                  "var tv4 = require('tv4');\r",
                   "pm.test('Validate JSON TV Genre Schema', function()\r",
                   "\r",
                   "{\r",
