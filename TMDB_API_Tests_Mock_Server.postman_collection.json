@@ -31,7 +31,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "raw": "{{base_url}}/search/movie?query=test_500&api_key={{api_key}}",
               "host": [
                 "{{base_url}}"
               ],
@@ -42,7 +42,7 @@
               "query": [
                 {
                   "key": "query",
-                  "value": "Dune+Part+Two"
+                  "value": "test_500"
                 },
                 {
                   "key": "api_key",
@@ -58,7 +58,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "raw": "{{base_url}}/search/movie?query=test_500&api_key={{api_key}}",
                   "host": [
                     "{{base_url}}"
                   ],
@@ -69,7 +69,7 @@
                   "query": [
                     {
                       "key": "query",
-                      "value": "Dune+Part+Two"
+                      "value": "test_500"
                     },
                     {
                       "key": "api_key",
@@ -121,7 +121,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "raw": "{{base_url}}/search/movie?query=test_malformed&api_key={{api_key}}",
               "host": [
                 "{{base_url}}"
               ],
@@ -132,7 +132,7 @@
               "query": [
                 {
                   "key": "query",
-                  "value": "Dune+Part+Two"
+                  "value": "test_malformed"
                 },
                 {
                   "key": "api_key",
@@ -148,7 +148,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "raw": "{{base_url}}/search/movie?query=test_malformed&api_key={{api_key}}",
                   "host": [
                     "{{base_url}}"
                   ],
@@ -159,7 +159,7 @@
                   "query": [
                     {
                       "key": "query",
-                      "value": "Dune+Part+Two"
+                      "value": "test_malformed"
                     },
                     {
                       "key": "api_key",
@@ -205,7 +205,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "raw": "{{base_url}}/search/movie?query=test_slow&api_key={{api_key}}",
               "host": [
                 "{{base_url}}"
               ],
@@ -216,7 +216,7 @@
               "query": [
                 {
                   "key": "query",
-                  "value": "Dune+Part+Two"
+                  "value": "test_slow"
                 },
                 {
                   "key": "api_key",
@@ -232,7 +232,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "raw": "{{base_url}}/search/movie?query=test_slow&api_key={{api_key}}",
                   "host": [
                     "{{base_url}}"
                   ],
@@ -243,7 +243,7 @@
                   "query": [
                     {
                       "key": "query",
-                      "value": "Dune+Part+Two"
+                      "value": "test_slow"
                     },
                     {
                       "key": "api_key",
@@ -290,7 +290,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+              "raw": "{{base_url}}/search/movie?query=test_empty&api_key={{api_key}}",
               "host": [
                 "{{base_url}}"
               ],
@@ -301,7 +301,7 @@
               "query": [
                 {
                   "key": "query",
-                  "value": "Dune+Part+Two"
+                  "value": "test_empty"
                 },
                 {
                   "key": "api_key",
@@ -317,7 +317,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/search/movie?query=Dune+Part+Two&api_key={{api_key}}",
+                  "raw": "{{base_url}}/search/movie?query=test_empty&api_key={{api_key}}",
                   "host": [
                     "{{base_url}}"
                   ],
@@ -328,7 +328,7 @@
                   "query": [
                     {
                       "key": "query",
-                      "value": "Dune+Part+Two"
+                      "value": "test_empty"
                     },
                     {
                       "key": "api_key",
@@ -376,13 +376,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+              "raw": "{{base_url}}/movie/test_missing_title?api_key={{api_key}}",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "movie",
-                "27205"
+                "test_missing_title"
               ],
               "query": [
                 {
@@ -399,13 +399,13 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+                  "raw": "{{base_url}}/movie/test_missing_title?api_key={{api_key}}",
                   "host": [
                     "{{base_url}}"
                   ],
                   "path": [
                     "movie",
-                    "27205"
+                    "test_missing_title"
                   ],
                   "query": [
                     {
@@ -453,13 +453,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+              "raw": "{{base_url}}/movie/test_field_type?api_key={{api_key}}",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "movie",
-                "27205"
+                "test_field_type"
               ],
               "query": [
                 {
@@ -476,13 +476,13 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/movie/27205?api_key={{api_key}}",
+                  "raw": "{{base_url}}/movie/test_field_type?api_key={{api_key}}",
                   "host": [
                     "{{base_url}}"
                   ],
                   "path": [
                     "movie",
-                    "27205"
+                    "test_field_type"
                   ],
                   "query": [
                     {
@@ -508,6 +508,193 @@
           ]
         }
       ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "pm.collectionVariables.set('movie_detail_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['title', 'vote_average', 'genres', 'release_date', 'status', 'original_language', 'id', 'runtime', 'budget', 'revenue', 'popularity', 'vote_count', 'spoken_languages', 'production_companies', 'overview'],\r",
+          "  properties: {\r",
+          "    title: { type: 'string' },\r",
+          "    vote_average: { type: 'number', minimum: 0, maximum: 10 },\r",
+          "    genres: { type: 'array' },\r",
+          "    release_date: { type: 'string' },\r",
+          "    status: { type: 'string' },\r",
+          "    original_language: { type: 'string' },\r",
+          "    overview: { type: 'string' },\r",
+          "    id: { type: 'number' },\r",
+          "    runtime: { type: 'number' },\r",
+          "    budget: { type: 'number' },\r",
+          "    revenue: { type: 'number' },\r",
+          "    popularity: { type: 'number' },\r",
+          "    vote_count: { type: 'number' },\r",
+          "    spoken_languages: { type: 'array' },\r",
+          "    production_companies: { type: 'array' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('movie_search_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['original_title', 'vote_average', 'genre_ids', 'release_date', 'id', 'original_language', 'title', 'popularity', 'vote_count', 'overview'],\r",
+          "  properties: {\r",
+          "    title: { type: 'string' },\r",
+          "    original_title: { type: 'string' },\r",
+          "    vote_average: { type: 'number', minimum: 0, maximum: 10 },\r",
+          "    genre_ids: { type: 'array' },\r",
+          "    release_date: { type: 'string' },\r",
+          "    original_language: { type: 'string' },\r",
+          "    overview: { type: 'string' },\r",
+          "    id: { type: 'number' },\r",
+          "    popularity: { type: 'number' },\r",
+          "    vote_count: { type: 'number' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('genre_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['genres'],\r",
+          "  properties: {\r",
+          "    genres: {\r",
+          "      type: 'array',\r",
+          "      items: {\r",
+          "        type: 'object',\r",
+          "        required: ['id', 'name'],\r",
+          "        properties: {\r",
+          "          id: { type: 'number' },\r",
+          "          name: { type: 'string' }\r",
+          "        }\r",
+          "      }\r",
+          "    }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('error_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['status_code', 'status_message', 'success'],\r",
+          "  properties: {\r",
+          "    status_code: { type: 'number' },\r",
+          "    status_message: { type: 'string' },\r",
+          "    success: { type: 'boolean' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('genre_item_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['id', 'name'],\r",
+          "  properties: {\r",
+          "    id: { type: 'number' },\r",
+          "    name: { type: 'string' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('tv_detail_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['created_by', 'genres', 'name', 'number_of_episodes', 'number_of_seasons', 'original_name', 'overview', 'popularity', 'seasons', 'spoken_languages', 'vote_average', 'vote_count', 'id'],\r",
+          "  properties: {\r",
+          "    created_by: { type: 'array' },\r",
+          "    vote_average: { type: 'number', minimum: 0, maximum: 10 },\r",
+          "    genres: { type: 'array' },\r",
+          "    number_of_episodes: { type: 'number' },\r",
+          "    number_of_seasons: { type: 'number' },\r",
+          "    original_name: { type: 'string' },\r",
+          "    overview: { type: 'string' },\r",
+          "    name: { type: 'string' },\r",
+          "    id: { type: 'number' },\r",
+          "    popularity: { type: 'number' },\r",
+          "    vote_count: { type: 'number' },\r",
+          "    spoken_languages: { type: 'array' },\r",
+          "    seasons: { type: 'array' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('tv_search_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['original_name', 'vote_average', 'genre_ids', 'first_air_date', 'id', 'original_language', 'popularity', 'vote_count', 'overview'],\r",
+          "  properties: {\r",
+          "    original_name: { type: 'string' },\r",
+          "    vote_average: { type: 'number', minimum: 0, maximum: 10 },\r",
+          "    genre_ids: { type: 'array' },\r",
+          "    first_air_date: { type: 'string' },\r",
+          "    original_language: { type: 'string' },\r",
+          "    overview: { type: 'string' },\r",
+          "    id: { type: 'number' },\r",
+          "    popularity: { type: 'number' },\r",
+          "    vote_count: { type: 'number' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('credit_schema', JSON.stringify({\r",
+          "  type: 'object',\r",
+          "  required: ['gender', 'id', 'name', 'popularity', 'original_name', 'character'],\r",
+          "  properties: {\r",
+          "    original_name: { type: 'string' },\r",
+          "    name: { type: 'string' },\r",
+          "    id: { type: 'number' },\r",
+          "    gender: { type: 'number' },\r",
+          "    popularity: { type: 'number' },\r",
+          "    character: { type: 'string' }\r",
+          "  }\r",
+          "}));\r",
+          "\r",
+          "pm.collectionVariables.set('search_id', 155);"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "movie_detail_schema",
+      "value": ""
+    },
+    {
+      "key": "movie_search_schema",
+      "value": ""
+    },
+    {
+      "key": "genre_schema",
+      "value": ""
+    },
+    {
+      "key": "error_schema",
+      "value": ""
+    },
+    {
+      "key": "genre_item_schema",
+      "value": ""
+    },
+    {
+      "key": "tv_detail_schema",
+      "value": ""
+    },
+    {
+      "key": "tv_search_schema",
+      "value": ""
+    },
+    {
+      "key": "credit_schema",
+      "value": ""
+    },
+    {
+      "key": "search_id",
+      "value": ""
     }
   ]
 }
