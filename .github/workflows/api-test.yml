@@ -1,0 +1,40 @@
+name: Postman API Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Newman
+        run: npm install -g newman
+      
+      - name: Install Newman HTML Reporter
+        run: npm install -g newman-reporter-htmlextra
+
+      - name: Run API Tests
+        run: newman run "TMDB_API_Tests.postman_collection.json" --environment TMDB.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://api.themoviedb.org/3" --reporters cli,htmlextra --reporter-htmlextra-export reports/test-report.html
+
+      - name: Run API Mock Tests
+        run: newman run "TMDB_API_Tests_Mock_Server.postman_collection.json" --environment TMDB_Mock_Server.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://6cd6cc6f-9516-431b-bebb-a37a90e7421f.mock.pstmn.io" --reporters cli,htmlextra --reporter-htmlextra-export reports/test-report-mock.html
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports/
+ 
