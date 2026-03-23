@@ -29,17 +29,17 @@ jobs:
         run: npm install -g newman-reporter-htmlextra
 
       - name: Install Newman Allure Reporter
-        run: npm install @getnotion/newman-reporter-allure
+        run: npm install newman-reporter-allure2
 
       - name: Run API Tests
-        run: newman run "TMDB_API_Tests.postman_collection.json" --environment TMDB.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://api.themoviedb.org/3" --reporters cli,htmlextra,@getnotion/newman-reporter-allure --reporter-htmlextra-export reports/test-report.html --reporter-allure-export allure-results
+        run: newman run "TMDB_API_Tests.postman_collection.json" --environment TMDB.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://api.themoviedb.org/3" --reporters cli,htmlextra,allure2 --reporter-htmlextra-export reports/test-report.html --reporter-allure-export allure-results
 
       - name: Check Allure Results
         run: ls -la allure-results || echo "allure-results folder not found"
         if: always()
       
       - name: Run API Mock Tests
-        run: newman run "TMDB_API_Tests_Mock_Server.postman_collection.json" --environment TMDB_Mock_Server.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://6cd6cc6f-9516-431b-bebb-a37a90e7421f.mock.pstmn.io" --reporters cli,htmlextra,@getnotion/newman-reporter-allure --reporter-htmlextra-export reports/test-report-mock.html --reporter-allure-export allure-results-mock
+        run: newman run "TMDB_API_Tests_Mock_Server.postman_collection.json" --environment TMDB_Mock_Server.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://6cd6cc6f-9516-431b-bebb-a37a90e7421f.mock.pstmn.io" --reporters cli,htmlextra,allure2 --reporter-htmlextra-export reports/test-report-mock.html --reporter-allure-export allure-results-mock
 
       - name: Upload Test Reports
         if: always()
