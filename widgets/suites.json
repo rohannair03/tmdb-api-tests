@@ -1,1 +1,1 @@
-{"total":0,"items":[]}
+{"total":2,"items":[{"uid":"868d91373b8f2d87b8d966b8ab0f4121","name":"TMDB API Tests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":24,"unknown":0,"total":24}},{"uid":"299222ddbdd5bbe3bcda132237a04fb0","name":"TMDB API Tests Mock Server","statistic":{"failed":0,"broken":0,"skipped":0,"passed":6,"unknown":0,"total":6}}]}
