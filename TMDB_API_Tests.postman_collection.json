@@ -472,7 +472,7 @@
           "response": []
         },
         {
-          "name": "Get Movie Pagination Out of Range - Returns 422",
+          "name": "Get Movie Pagination Out of Range - Returns 400",
           "event": [
             {
               "listen": "test",
