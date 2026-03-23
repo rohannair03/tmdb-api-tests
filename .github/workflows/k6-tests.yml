@@ -1,0 +1,44 @@
+name: k6 Performance Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 17 * * 1'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install k6
+        run: |
+          gpg -k
+          gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | tee /etc/apt/sources.list.d/k6.list
+          apt-get update
+          apt-get install k6
+
+      - name: Run k6 baseline
+        run: k6 run --env TMDB_API_KEY=${{ secrets.TMDB_API_KEY }} --summary-export=k6-baseline.json k6-baseline.js
+
+      - name: Run k6 light load
+        run: k6 run --env TMDB_API_KEY=${{ secrets.TMDB_API_KEY }} --summary-export=k6-lightload.json k6-lightload.js
+
+      - name: Run k6 moderate load
+        run: k6 run --env TMDB_API_KEY=${{ secrets.TMDB_API_KEY }} --summary-export=k6-moderateload.json k6-moderateload.js
+
+      - name: Run k6 spike test
+        run: k6 run --env TMDB_API_KEY=${{ secrets.TMDB_API_KEY }} --summary-export=k6-spiketest.json k6-spiketest.js
+
+      - name: Run k6 soak test
+        run: k6 run --env TMDB_API_KEY=${{ secrets.TMDB_API_KEY }} --summary-export=k6-soaktest.json k6-soaktest.js
+
+      - name: Upload k6 results
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-results
+          path: k6-*.json
+ 
