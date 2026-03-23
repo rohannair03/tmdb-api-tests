@@ -28,6 +28,9 @@ jobs:
       - name: Install Newman HTML Reporter
         run: npm install -g newman-reporter-htmlextra
 
+      - name: Install Newman Allure Reporter
+        run: npm install -g newman-reporter-allure
+
       - name: Run API Tests
         run: newman run "TMDB_API_Tests.postman_collection.json" --environment TMDB.postman_environment.json --env-var "api_key=${{ secrets.TMDB_API_KEY }}" --env-var "base_url=https://api.themoviedb.org/3" --reporters cli,htmlextra,allure --reporter-htmlextra-export reports/test-report.html --reporter-allure-export allure-results
 
