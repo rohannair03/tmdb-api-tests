@@ -1,0 +1,9 @@
+{
+    "User-Agent": "PostmanRuntime/7.39.1",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "5ad2c00c-4876-4584-a8ed-8a5f72c690de",
+    "Host": "api.themoviedb.org",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}

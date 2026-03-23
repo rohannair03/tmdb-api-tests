@@ -1,0 +1,16 @@
+{
+    "Content-Type": "application/json;charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Date": "Mon, 23 Mar 2026 17:30:01 GMT",
+    "Content-Encoding": "gzip",
+    "Server": "openresty",
+    "x-az": "us-east-1c",
+    "x-task-id": "0f5874f753844368935241412fc0713c",
+    "Vary": "Origin",
+    "X-Cache": "Error from cloudfront",
+    "Via": "1.1 aa58ad8a62d695ff2f477004a59f4baa.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Pop": "IAD61-P9",
+    "Alt-Svc": "h3=\":443\"; ma=86400",
+    "X-Amz-Cf-Id": "2dz0AF9G4ry2_1ZCZpE-cRar8AbPk5GiCE17dQP5o6SRM8QLBuURxw=="
+}
