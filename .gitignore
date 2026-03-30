@@ -5,3 +5,5 @@ node_modules/
 run-mock-tests.bat
 run-tests.bat
 *.bat
+*.env
+*.pyc

@@ -1,4 +1,4 @@
-name: Postman API Tests
+name: Postman API and Data Validation Tests
 
 on:
   push:
@@ -57,4 +57,59 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
- 
+  
+  db-validation:
+    runs-on: ubuntu-latest
+  
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: tmdb_validation
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps: 
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install psycopg2-binary python-dotenv requests
+
+      - name: Create schema
+        run: psql -h localhost -U postgres -d tmdb_validation -f db/schema.sql
+        env:
+          PGPASSWORD: postgres
+
+      - name: Run Ingestion
+        env: 
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          DB_HOST: localhost
+          DB_NAME: tmdb_validation
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_PORT: 5432
+        run: python db/ingest.py
+        
+      - name: Run Validation Tests
+        env: 
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          DB_HOST: localhost
+          DB_NAME: tmdb_validation
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_PORT: 5432
+        run: pytest db/validate.py -v
+        
