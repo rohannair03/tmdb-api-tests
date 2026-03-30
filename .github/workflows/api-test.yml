@@ -86,7 +86,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install psycopg2-binary python-dotenv requests
+        run: pip install psycopg2-binary python-dotenv requests pytest
 
       - name: Create schema
         run: psql -h localhost -U postgres -d tmdb_validation -f db/schema.sql
