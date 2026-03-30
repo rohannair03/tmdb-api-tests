@@ -3,7 +3,7 @@
 A comprehensive API testing portfolio project built on the [TMDB (The Movie Database) public API](https://developer.themoviedb.org/docs). Demonstrates a complete QA workflow spanning contract testing, functional testing, mock server scenarios, CI/CD integration, Allure reporting, and k6 performance baselines.
 
 **Live Allure Report:** [rohannair03.github.io/tmdb-api-tests](https://rohannair03.github.io/tmdb-api-tests)  
-**Stack:** Postman · Newman · GitHub Actions · Allure · k6
+**Stack:** Postman · Newman · GitHub Actions · Allure · k6 · Python · PostgreSQL · psycopg2
 
 ---
 
@@ -17,6 +17,7 @@ A comprehensive API testing portfolio project built on the [TMDB (The Movie Data
 - [Phase 6 — Newman CLI & GitHub Actions](#phase-6--newman-cli--github-actions)
 - [Phase 7 — Allure Reporting](#phase-7--allure-reporting)
 - [Phase 8 — k6 Performance Baseline](#phase-8--k6-performance-baseline)
+- [Phase 9 — PostgreSQL Data Validation Pipeline](#phase-9--postgresql-data-validation-pipeline)
 - [Real API Behavioral Findings](#real-api-behavioral-findings)
 - [Running Locally](#running-locally)
 
@@ -31,6 +32,10 @@ tmdb-api-tests/
 │       ├── newman.yml          # Functional tests — push, PR, daily schedule
 │       └── k6.yml              # Performance tests — weekly schedule
 ├── schemas/                    # JSON Schema definitions (tv4)
+├── db/
+│   ├── schema.sql              # Table definitions — movies, genres, movie_genres
+│   ├── ingest.py               # Fetches from TMDB API, loads into PostgreSQL
+│   └── validate.py             # 7 pytest data validation tests
 ├── k6-baseline.js              # 1 VU, 60s
 ├── k6-lightload.js             # 10 VUs, 90s
 ├── k6-moderateload.js          # 50 VUs, 90s
@@ -179,6 +184,42 @@ JSON summaries from all five runs are stored as CI artifacts for trend analysis 
 
 ---
 
+## Phase 9 — PostgreSQL Data Validation Pipeline
+
+A Python-based data validation pipeline that ingests TMDB API responses into a local PostgreSQL database and runs SQL-based integrity checks via pytest.
+
+### Schema
+
+Three tables model the TMDB data relationally:
+
+- `movies` — id, title, release_date, vote_average
+- `genres` — id, name
+- `movie_genres` — junction table linking movies to genres (many-to-many)
+
+Foreign key constraints enforce referential integrity at the database level.
+
+### Ingestion
+
+`ingest.py` fetches 5 pages of popular movies (~100 results) and the full genre list from the TMDB API, loading them into PostgreSQL via psycopg2. Duplicate records are handled with `ON CONFLICT DO NOTHING`.
+
+### Validation Tests
+
+7 pytest tests query the database directly to assert data integrity:
+
+| Test | SQL Concept | Assertion |
+|------|-------------|-----------|
+| `test_movies_have_titles` | `IS NULL` | No movies with null title |
+| `test_movies_have_release_dates` | `IS NULL` | No movies with null release date |
+| `test_movies_have_vote_averages` | `IS NULL` | No movies with null vote average |
+| `test_genres_have_names` | `IS NULL` | No genres with null name |
+| `test_vote_average_in_range` | Comparison operators | All vote averages between 0 and 10 |
+| `test_no_orphaned_movie_genres` | `LEFT JOIN` | No genre associations pointing to missing movies |
+| `test_no_duplicate_movie_ids` | `GROUP BY / HAVING` | No duplicate movie IDs in dataset |
+
+### CI Integration
+
+The `db-validation` job runs in parallel with the Newman test job on every push. A PostgreSQL service container is spun up fresh for each run — schema created, data ingested, validation tests executed automatically.
+
 ## Real API Behavioral Findings
 
 Two deviations from expected REST conventions were documented during functional testing:
@@ -222,6 +263,24 @@ k6 run --env TMDB_API_KEY=YOUR_KEY --summary-export=k6-lightload.json k6-lightlo
 k6 run --env TMDB_API_KEY=YOUR_KEY --summary-export=k6-moderateload.json k6-moderateload.js
 k6 run --env TMDB_API_KEY=YOUR_KEY --summary-export=k6-spiketest.json k6-spiketest.js
 k6 run --env TMDB_API_KEY=YOUR_KEY --summary-export=k6-soaktest.json k6-soaktest.js
+```
+
+### PostgreSQL Data Validation
+```bash
+# Install dependencies
+pip install psycopg2-binary python-dotenv requests pytest
+
+# Create database and schema
+psql -U postgres -c "CREATE DATABASE tmdb_validation;"
+psql -U postgres -d tmdb_validation -f db/schema.sql
+
+# Set environment variables in db/.env (see .env.example)
+
+# Run ingestion
+python db/ingest.py
+
+# Run validation tests
+pytest db/validate.py -v
 ```
 
 ---
