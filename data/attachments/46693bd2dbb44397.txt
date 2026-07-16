@@ -1,5 +1,0 @@
-{ 
-    "results": [], 
-    "total_results": 0 
-    
-}
