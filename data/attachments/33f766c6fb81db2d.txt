@@ -1,0 +1,126 @@
+pm.collectionVariables.set('movie_detail_schema', JSON.stringify({
+  type: 'object',
+  required: ['title', 'vote_average', 'genres', 'release_date', 'status', 'original_language', 'id', 'runtime', 'budget', 'revenue', 'popularity', 'vote_count', 'spoken_languages', 'production_companies', 'overview'],
+  properties: {
+    title: { type: 'string' },
+    vote_average: { type: 'number', minimum: 0, maximum: 10 },
+    genres: { type: 'array' },
+    release_date: { type: 'string' },
+    status: { type: 'string' },
+    original_language: { type: 'string' },
+    overview: { type: 'string' },
+    id: { type: 'number' },
+    runtime: { type: 'number' },
+    budget: { type: 'number' },
+    revenue: { type: 'number' },
+    popularity: { type: 'number' },
+    vote_count: { type: 'number' },
+    spoken_languages: { type: 'array' },
+    production_companies: { type: 'array' }
+  }
+}));
+
+pm.collectionVariables.set('movie_search_schema', JSON.stringify({
+  type: 'object',
+  required: ['original_title', 'vote_average', 'genre_ids', 'release_date', 'id', 'original_language', 'title', 'popularity', 'vote_count', 'overview'],
+  properties: {
+    title: { type: 'string' },
+    original_title: { type: 'string' },
+    vote_average: { type: 'number', minimum: 0, maximum: 10 },
+    genre_ids: { type: 'array' },
+    release_date: { type: 'string' },
+    original_language: { type: 'string' },
+    overview: { type: 'string' },
+    id: { type: 'number' },
+    popularity: { type: 'number' },
+    vote_count: { type: 'number' }
+  }
+}));
+
+pm.collectionVariables.set('genre_schema', JSON.stringify({
+  type: 'object',
+  required: ['genres'],
+  properties: {
+    genres: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['id', 'name'],
+        properties: {
+          id: { type: 'number' },
+          name: { type: 'string' }
+        }
+      }
+    }
+  }
+}));
+
+pm.collectionVariables.set('error_schema', JSON.stringify({
+  type: 'object',
+  required: ['status_code', 'status_message', 'success'],
+  properties: {
+    status_code: { type: 'number' },
+    status_message: { type: 'string' },
+    success: { type: 'boolean' }
+  }
+}));
+
+pm.collectionVariables.set('genre_item_schema', JSON.stringify({
+  type: 'object',
+  required: ['id', 'name'],
+  properties: {
+    id: { type: 'number' },
+    name: { type: 'string' }
+  }
+}));
+
+pm.collectionVariables.set('tv_detail_schema', JSON.stringify({
+  type: 'object',
+  required: ['created_by', 'genres', 'name', 'number_of_episodes', 'number_of_seasons', 'original_name', 'overview', 'popularity', 'seasons', 'spoken_languages', 'vote_average', 'vote_count', 'id'],
+  properties: {
+    created_by: { type: 'array' },
+    vote_average: { type: 'number', minimum: 0, maximum: 10 },
+    genres: { type: 'array' },
+    number_of_episodes: { type: 'number' },
+    number_of_seasons: { type: 'number' },
+    original_name: { type: 'string' },
+    overview: { type: 'string' },
+    name: { type: 'string' },
+    id: { type: 'number' },
+    popularity: { type: 'number' },
+    vote_count: { type: 'number' },
+    spoken_languages: { type: 'array' },
+    seasons: { type: 'array' }
+  }
+}));
+
+pm.collectionVariables.set('tv_search_schema', JSON.stringify({
+  type: 'object',
+  required: ['original_name', 'vote_average', 'genre_ids', 'first_air_date', 'id', 'original_language', 'popularity', 'vote_count', 'overview'],
+  properties: {
+    original_name: { type: 'string' },
+    vote_average: { type: 'number', minimum: 0, maximum: 10 },
+    genre_ids: { type: 'array' },
+    first_air_date: { type: 'string' },
+    original_language: { type: 'string' },
+    overview: { type: 'string' },
+    id: { type: 'number' },
+    popularity: { type: 'number' },
+    vote_count: { type: 'number' }
+  }
+}));
+
+pm.collectionVariables.set('credit_schema', JSON.stringify({
+  type: 'object',
+  required: ['gender', 'id', 'name', 'popularity', 'original_name', 'character'],
+  properties: {
+    original_name: { type: 'string' },
+    name: { type: 'string' },
+    id: { type: 'number' },
+    gender: { type: 'number' },
+    popularity: { type: 'number' },
+    character: { type: 'string' }
+  }
+}));
+
+pm.collectionVariables.set('search_id', 155);
